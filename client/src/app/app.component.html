@@ -1,0 +1,127 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div *ngIf="identity" class="navigation col-lg-6"> 
+      <h1>
+        {{title}}!
+      </h1>
+      <nav id="navigation">
+        <a class="col-lg-12" href="#"> 
+          <span class="fa fa-search" aria-hidden="true"></span>
+          Buscar
+        </a>
+        <a class="col-lg-12" href="#"> 
+          <span class="fa fa-star" aria-hidden="true"></span>
+          Artista
+        </a>
+        <a class="col-lg-12" href="#">
+          <span class="fa fa-book" aria-hidden="true"></span>
+          Albums
+        </a>
+      </nav>
+      <nav id="user_logged">
+        <span id="identity_name">
+          {{identity.name}}
+        </span>
+        <span (click)="logout()" class="btn btn-warning">
+          Cerrar Sesion
+        </span>
+        <a [routerLink]="['/mis-datos']">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          Mis datos 
+        </a>
+      </nav>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div *ngIf="identity" class="central col-lg-11"> 
+      <p>Estas logueado en la aplicación</p>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div *ngIf="!identity" class="row">
+        <div class="col-lg-6">
+          <h1>Identificate</h1>
+          <div *ngIf="errorMessage">
+              <div class="alert alert-warning">
+                <strong>Error!</strong> {{errorMessage}}
+              </div>
+          </div>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-6">
+            <p>
+              <label>Correo electrónico:</label>
+              <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email"  class="form-control" required />
+              <span *ngIf="!email.valid && email.touched">
+                El imail es obligatorio
+              </span>
+            </p>
+            <p>
+              <label>Contraseña:</label>
+              <input type="password" class="form-control" required #password="ngModel" name="password" [(ngModel)]="user.password"/>
+            </p>
+            <input type="submit" value="Ingresar" class="btn btn-primary"/>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <h1>Registrate</h1>
+          <div *ngIf="alertRegister">
+              <div class="alert alert-warning">
+                {{alertRegister}}
+              </div>
+          </div>
+          <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-10">
+            <p>
+              <label>Nombres:</label>
+              <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]= "userRegister.name" required />
+              <span *ngIf="!name.valid && name.touched">
+                El nombre es obligatorio
+              </span>
+            </p>
+            <p>
+              <label>Apellidos:</label>
+              <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]= "userRegister.surname" required />
+              <span *ngIf="!surname.valid && surname.touched">
+                El apellido es obligatorio
+              </span>
+            </p>
+            <p>
+              <label>Correo electrónico:</label>
+              <input type="email" #email="ngModel" name="email" [(ngModel)]="userRegister.email"  class="form-control" required />
+              <span *ngIf="!email.valid && email.touched">
+                El imail es obligatorio
+              </span>
+            </p>
+            <p>
+              <label>Contraseña:</label>
+              <input type="password" class="form-control" required #password="ngModel" name="password" [(ngModel)]="userRegister.password"/>
+              <span *ngIf="!password.valid && password.touched">
+                La contraseña es obligatorio
+              </span>
+            </p>
+            <input type="submit" value="Registrar" class="btn btn-primary"/>
+          </form>
+        </div>
+  </div>
+</div>
+
+
+<!-- <div style="text-align:center">
+  <h1>
+    {{title}}!
+  </h1>
+  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul> -->
+
